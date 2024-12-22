@@ -9,7 +9,7 @@
 
     <bean id="repo1" class="org.timowa.spring.database.repository.UserRepository">
         <constructor-arg name="userName" value="${db.username}"/>
-        <constructor-arg name="poolSize" value="${db.pool.size}"/>k
+        <constructor-arg name="poolSize" value="${db.pool.size}"/>
         <constructor-arg name="args">
             <list>
                 <value>1</value>
