@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="location" value="classpath:application.properties"/>
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <bean class="org.timowa.spring.bpp.InjectBeanPostProcessor"/>
+
+    <bean id="repo1" class="org.timowa.spring.database.repository.UserRepository"/>
+
+    <bean class="org.timowa.spring.database.repository.pool.ConnectionPool">
+        <constructor-arg name="username" value="${db.username}"/>
+        <constructor-arg name="password" value="${db.password}"/>
+        <constructor-arg name="poolSize" value="${db.pool.size}"/>
+        <constructor-arg name="url" value="${db.url}"/>
     </bean>
 
-    <bean id="repo1" class="org.timowa.spring.database.repository.UserRepository">
-        <constructor-arg name="userName" value="${db.username}"/>
-        <constructor-arg name="poolSize" value="${db.pool.size}"/>
-        <constructor-arg name="args">
-            <list>
-                <value>1</value>
-                <value>2</value>
-                <value>3</value>
-            </list>
-        </constructor-arg>
-        <constructor-arg name="properties">
-            <map>
-                <entry key="user" value="tihon"/>
-                <entry key="address" value="Chelyabinsk"/>
-            </map>
-        </constructor-arg>
+    <bean name="Driver" class="java.lang.String">
+        <constructor-arg value="PostgresDriver"/>
     </bean>
 
     <bean name="userDto" class="org.timowa.spring.dto.UserDto" scope=""/>

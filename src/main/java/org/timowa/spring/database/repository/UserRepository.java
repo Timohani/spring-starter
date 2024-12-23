@@ -1,19 +1,12 @@
 package org.timowa.spring.database.repository;
 
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.timowa.spring.bpp.InjectBean;
+import org.timowa.spring.database.repository.pool.ConnectionPool;
 
-import java.util.List;
-import java.util.Map;
-
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class UserRepository {
-    private String userName;
-    private int poolSize;
-    private List<Object> args;
-    private Map<String, Object> properties;
+
+    @InjectBean
+    private ConnectionPool connectionPool;
 }
