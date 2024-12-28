@@ -1,12 +1,20 @@
 package org.timowa.spring.database.repository;
 
 import lombok.ToString;
-import org.timowa.spring.bpp.InjectBean;
+import org.springframework.stereotype.Repository;
 import org.timowa.spring.database.repository.pool.ConnectionPool;
 
+import java.util.List;
+
 @ToString
+@Repository
 public class UserRepository {
 
-    @InjectBean
-    private ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool1;
+    private Integer poolSize;
+    private List<ConnectionPool> connectionPool;
+
+    public UserRepository(ConnectionPool connectionPool1) {
+        this.connectionPool1 = connectionPool1;
+    }
 }

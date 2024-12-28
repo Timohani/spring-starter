@@ -1,11 +1,13 @@
 package org.timowa.spring.mapper;
 
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.timowa.spring.dto.UserDto;
 
-@RequiredArgsConstructor
+@Component
 @ToString
 public class UserMapper {
-    private final UserDto userDto;
+    @Autowired
+    private UserDto userDto;
 }
