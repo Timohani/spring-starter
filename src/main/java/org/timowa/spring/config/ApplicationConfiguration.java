@@ -1,5 +1,6 @@
 package org.timowa.spring.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,13 +9,13 @@ import org.timowa.spring.database.repository.UserRepository;
 import org.timowa.spring.database.repository.pool.ConnectionPool;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yml")
 @ComponentScan("org.timowa.spring")
 public class ApplicationConfiguration {
 
     @Bean("connectionPool1")
-    public ConnectionPool connectionPool() {
-        return new ConnectionPool("mysql", "123", 100, "---");
+    public ConnectionPool connectionPool(@Value("${db.username}") String username) {
+        return new ConnectionPool(username, "123", 100, "---");
     }
 
     @Bean
@@ -24,6 +25,6 @@ public class ApplicationConfiguration {
 
     @Bean
     public UserRepository userRepository1() {
-        return new UserRepository(connectionPool());
+        return new UserRepository(connectionPool2());
     }
 }
