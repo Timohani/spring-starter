@@ -23,7 +23,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public UserRepository userRepository() {
+    public UserRepository userRepository1() {
         return new UserRepository(connectionPool());
     }
 }
