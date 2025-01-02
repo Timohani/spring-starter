@@ -1,9 +1,9 @@
-db: 
+db:
   username: postgres
   password: root
-  driver: PostgresDriver
+  driver: org.postgresql.Driver
   url: postgres:5432
-  hosts: localhost,127.0.0.1
+  host: localhost
   pool:
     size: 12
     timeout: 20
@@ -12,3 +12,11 @@ db:
       timeout: 20
     - size: 20
       timeout: 40
+
+logging:
+  level:
+    root: WARN
+    org.timowa.spring.database.repository.pool: INFO
+#  file:
+#    name: log
+#    path: /
