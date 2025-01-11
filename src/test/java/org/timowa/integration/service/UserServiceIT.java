@@ -1,4 +1,4 @@
-package org.timowa.integration;
+package org.timowa.integration.service;
 
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.timowa.spring.service.UserService;
 
 @IT
 @RequiredArgsConstructor
-public class UserServiceIT {
+class UserServiceIT {
     private final UserService userService;
 
     @MockitoBean(name = "connectionPool2")

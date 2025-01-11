@@ -1,4 +1,4 @@
-package org.timowa.integration;
+package org.timowa.integration.service;
 
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
