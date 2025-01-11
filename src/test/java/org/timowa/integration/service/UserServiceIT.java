@@ -12,9 +12,6 @@ import org.timowa.spring.service.UserService;
 class UserServiceIT {
     private final UserService userService;
 
-    @MockitoBean(name = "connectionPool2")
-    private ConnectionPool pool1;
-
     @Test
     void findById() {
 

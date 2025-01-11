@@ -12,7 +12,7 @@ import org.timowa.spring.service.CompanyService;
 
 @IT
 @RequiredArgsConstructor
-@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+//@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class CompanyServiceIT {
     private static final Integer COMPANY_ID = 1;
 
