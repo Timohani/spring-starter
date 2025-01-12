@@ -22,6 +22,13 @@ public class CompanyRepositoryTest {
     private final CompanyRepository companyRepository;
 
     @Test
+    void checkFindByQueries() {
+        companyRepository.findByName("Google");
+        var companies = companyRepository.findAllByNameContainingIgnoreCase("a");
+        assertThat(companies).hasSize(3);
+    }
+
+    @Test
     void delete() {
         var maybeCompany = companyRepository.findById(APPLE_ID);
         assertTrue(maybeCompany.isPresent());
