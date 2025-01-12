@@ -2,6 +2,7 @@ package org.timowa.annotation;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 import org.timowa.integration.TestApplicationRunner;
 import org.timowa.spring.ApplicationRunner;
 
@@ -14,5 +15,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @ActiveProfiles("test")
 @SpringBootTest(classes = {ApplicationRunner.class, TestApplicationRunner.class})
+@Transactional
 public @interface IT {
 }

@@ -1,16 +1,8 @@
 package org.timowa.spring.database.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.timowa.spring.database.entity.Company;
 
-import java.util.Collections;
-import java.util.Optional;
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
-@Repository
-public class CompanyRepository {
-
-    public Optional<Company> findById(Integer id) {
-        System.out.println("CompanyRepository findById method");
-        return Optional.of(new Company(id, null, Collections.emptyMap()));
-    }
 }
