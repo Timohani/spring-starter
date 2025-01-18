@@ -7,7 +7,6 @@ import org.timowa.spring.database.repository.pool.ConnectionPool;
 import java.util.List;
 
 @ToString
-@Repository
 public class UserRepository {
 
     private final ConnectionPool connectionPool1;
