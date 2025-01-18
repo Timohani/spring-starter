@@ -1,23 +1,59 @@
 package org.timowa.integration.repository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.timowa.annotation.IT;
 import org.timowa.spring.database.entity.Role;
 import org.timowa.spring.database.repository.UserRepository;
-import org.timowa.spring.dto.PersonalInfo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @IT
 @RequiredArgsConstructor
+@Slf4j
 public class UserRepositoryTest {
     private final UserRepository userRepository;
 
     @Test
+    void checkPageable() {
+        var pageable = PageRequest.
+                of(0, 2, Sort.by("id"));
+        var slice = userRepository.findAllBy(pageable);
+
+        slice.forEach(u -> System.out.println(u.getId()));
+
+        while (slice.hasNext()) {
+            slice = userRepository.findAllBy(slice.nextPageable());
+            System.out.println("Next page");
+            slice.forEach(u -> System.out.println(u.getId()));
+        }
+
+        assertFalse(slice.isEmpty());
+        assertThat(slice).hasSize(2);
+    }
+
+    @Test
+    void findFirst3ByTest() {
+        var users = userRepository.findFirst3By(Sort.by("id").descending());
+        assertFalse(users.isEmpty());
+        log.info("Users = {}", users);
+        assertThat(users).hasSize(3);
+    }
+
+    @Test
+    void findFirstByCompanyIsNotNullOrderByIdDescTest() {
+        var user = userRepository.findFirstByCompanyIsNotNullOrderByIdDesc();
+        assertTrue(user.isPresent());
+        user.ifPresent(u -> assertEquals("nagibator", u.getFirstname()));
+    }
+
+    @Test
     void checkProjections() {
-        var users = userRepository.findAllByCompanyId(1, PersonalInfo.class);
+        var users = userRepository.findAllByCompanyId(1);
         assertThat(users).hasSize(1);
     }
 
