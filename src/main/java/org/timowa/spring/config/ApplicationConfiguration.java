@@ -22,9 +22,4 @@ public class ApplicationConfiguration {
     public ConnectionPool connectionPool2() {
         return new ConnectionPool("postgres", "root", 20, "url");
     }
-
-    @Bean
-    public UserRepository userRepository1() {
-        return new UserRepository(connectionPool2());
-    }
 }

@@ -10,7 +10,6 @@ import org.timowa.spring.database.repository.CompanyRepository;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @IT
@@ -23,7 +22,7 @@ public class CompanyRepositoryTest {
 
     @Test
     void checkFindByQueries() {
-        companyRepository.findByName("Google");
+        var companyByName = companyRepository.findByName("Google");
         var companies = companyRepository.findAllByNameContainingIgnoreCase("a");
         assertThat(companies).hasSize(3);
     }

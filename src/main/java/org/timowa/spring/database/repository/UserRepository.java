@@ -1,19 +1,21 @@
 package org.timowa.spring.database.repository;
 
-import lombok.ToString;
-import org.springframework.stereotype.Repository;
-import org.timowa.spring.database.repository.pool.ConnectionPool;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.timowa.spring.database.entity.Role;
+import org.timowa.spring.database.entity.User;
 
 import java.util.List;
 
-@ToString
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    private final ConnectionPool connectionPool1;
-    private Integer poolSize;
-    private List<ConnectionPool> connectionPool;
+    <T> List<T> findAllByCompanyId(Integer companyId, Class<T> clazz);
 
-    public UserRepository(ConnectionPool connectionPool1) {
-        this.connectionPool1 = connectionPool1;
-    }
+    List<User> findAllByFirstnameContainingAndLastnameContaining(String firstname, String lastname);
+
+    @Modifying(clearAutomatically = true)
+    @Query("update User u set u.role = :role " +
+            "where u.id in (:ids)")
+    int updateRole(Role role, Long... ids);
 }
