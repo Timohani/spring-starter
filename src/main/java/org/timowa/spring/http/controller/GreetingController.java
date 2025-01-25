@@ -1,22 +1,27 @@
 package org.timowa.spring.http.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.timowa.spring.dto.UserReadDto;
 
 @Controller
+@SessionAttributes({"user"})
 public class GreetingController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public ModelAndView hello(ModelAndView mv) {
-        mv.setViewName("greeting/hello");
-        return mv;
+    @GetMapping("/hello")
+    public String hello(@RequestParam("age") Integer age,
+                        Model model,
+                        UserReadDto userReadDto) {
+        model.addAttribute("user", userReadDto);
+        return "greeting/hello";
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public ModelAndView bye(ModelAndView mv) {
-        mv.setViewName("greeting/bye");
-        return mv;
+    @GetMapping("/bye")
+    public String bye(@SessionAttribute("user") UserReadDto user) {
+        return "greeting/bye";
     }
 }
