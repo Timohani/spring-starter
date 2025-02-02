@@ -3,7 +3,6 @@ package org.timowa.integration.service;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.TestConstructor;
 import org.timowa.annotation.IT;
 import org.timowa.spring.config.DatabaseProperties;
 import org.timowa.spring.dto.CompanyReadDto;
@@ -27,7 +26,7 @@ class CompanyServiceIT {
 
         Assertions.assertTrue(actualResult.isPresent());
 
-        var expectedResult = new CompanyReadDto(COMPANY_ID);
+        var expectedResult = new CompanyReadDto(COMPANY_ID, null);
 
         actualResult.ifPresent(actual -> Assertions.assertEquals(expectedResult, actual));
     }

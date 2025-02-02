@@ -41,7 +41,7 @@ class CompanyServiceTest {
 
         Assertions.assertTrue(actualResult.isPresent());
 
-        var expectedResult = new CompanyReadDto(COMPANY_ID);
+        var expectedResult = new CompanyReadDto(COMPANY_ID, null);
 
         actualResult.ifPresent(actual -> Assertions.assertEquals(expectedResult, actual));
 
