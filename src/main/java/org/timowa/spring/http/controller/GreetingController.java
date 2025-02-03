@@ -3,7 +3,6 @@ package org.timowa.spring.http.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.timowa.spring.dto.UserReadDto;
@@ -13,8 +12,7 @@ import org.timowa.spring.dto.UserReadDto;
 public class GreetingController {
 
     @GetMapping("/hello")
-    public String hello(@RequestParam("age") Integer age,
-                        Model model,
+    public String hello(Model model,
                         UserReadDto userReadDto) {
         model.addAttribute("user", userReadDto);
         return "greeting/hello";
