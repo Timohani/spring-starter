@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.timowa.spring.database.repository.UserRepository;
 import org.timowa.spring.dto.UserCreatedEditDto;
+import org.timowa.spring.dto.UserFilter;
 import org.timowa.spring.dto.UserReadDto;
 import org.timowa.spring.mapper.UserCreateEditMapper;
 import org.timowa.spring.mapper.UserReadMapper;
@@ -19,6 +20,12 @@ public class UserService {
     private final UserReadMapper userReadMapper;
     private final UserCreateEditMapper userCreateEditMapper;
     private final UserRepository userRepository;
+
+    public List<UserReadDto> findAll(UserFilter filter) {
+        return userRepository.findAllByFilter(filter).stream()
+                .map(userReadMapper::map)
+                .toList();
+    }
 
     public List<UserReadDto> findAll() {
         return userRepository.findAll().stream()

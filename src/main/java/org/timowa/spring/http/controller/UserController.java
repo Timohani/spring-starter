@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.timowa.spring.database.entity.Role;
 import org.timowa.spring.dto.UserCreatedEditDto;
+import org.timowa.spring.dto.UserFilter;
 import org.timowa.spring.service.CompanyService;
 import org.timowa.spring.service.UserService;
 
@@ -20,8 +21,8 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String findAll(Model model, UserFilter filter) {
+        model.addAttribute("users", userService.findAll(filter));
         return "user/users";
     }
 

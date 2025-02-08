@@ -1,7 +1,7 @@
 package org.timowa.spring.database.repository;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,15 +13,9 @@ import org.timowa.spring.dto.IPersonalInfo;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>, FilterUserRepository {
 
-    /**
-     * Instead of class Slice
-     * you can use class Page
-     * cuz it gives more useful methods
-     * like getTotalPages
-     */
-    Slice<User> findAllBy(Pageable pageable);
+    Page<User> findAllBy(Pageable pageable);
 
     List<User> findFirst3By(Sort sort);
     
