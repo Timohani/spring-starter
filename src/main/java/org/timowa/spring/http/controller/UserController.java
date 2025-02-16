@@ -1,6 +1,7 @@
 package org.timowa.spring.http.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.timowa.spring.dto.UserReadDto;
 import org.timowa.spring.service.CompanyService;
 import org.timowa.spring.service.UserService;
 
+@Slf4j
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
