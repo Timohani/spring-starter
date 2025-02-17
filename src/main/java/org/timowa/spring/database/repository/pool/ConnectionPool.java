@@ -1,6 +1,5 @@
 package org.timowa.spring.database.repository.pool;
 
-import jakarta.annotation.PostConstruct;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +22,5 @@ public class ConnectionPool {
         this.password = password;
         this.poolSize = poolSize;
         this.url = url;
-    }
-
-    @PostConstruct
-    public void init() {
-        log.info("Init connection pool");
     }
 }
