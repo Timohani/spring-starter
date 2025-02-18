@@ -33,8 +33,12 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties.hibernate:
       show_sql: true
       format_sql: true
     open-in-view: false
+
+app:
+  image:
+    bucket: images
