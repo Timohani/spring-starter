@@ -17,6 +17,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>,
         FilterUserRepository, QuerydslPredicateExecutor<User> {
 
+    Optional<User> findByUsername(String name);
+
     Page<User> findAllBy(Pageable pageable);
 
     List<User> findFirst3By(Sort sort);
