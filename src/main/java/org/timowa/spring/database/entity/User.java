@@ -1,6 +1,7 @@
 package org.timowa.spring.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -23,9 +24,9 @@ public class User implements BaseEntity<Long> {
     private Long id;
 
     @Column(nullable = false, unique = true)
-
     private String username;
 
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     private String firstname;
@@ -46,6 +47,10 @@ public class User implements BaseEntity<Long> {
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private List<UserChat> userChats = new ArrayList<>();
+
+    @Size(max = 128)
+    @Column(name = "password", length = 128)
+    private String password;
 
     @Override
     public final boolean equals(Object o) {
