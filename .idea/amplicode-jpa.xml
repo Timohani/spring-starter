@@ -3,5 +3,7 @@
   <component name="AmplicodeJpaIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="41ec4301-352f-4737-870e-464127a7ce4d" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/org/timowa/spring/database/entity" />
   </component>
 </project>

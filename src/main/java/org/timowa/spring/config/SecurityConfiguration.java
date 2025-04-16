@@ -16,10 +16,15 @@ public class SecurityConfiguration {
         http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
+//                .httpBasic(Customizer.withDefaults());
                 .formLogin(login -> login
                         .loginPage("/login")
                         .defaultSuccessUrl("/users")
-                        .permitAll());
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .deleteCookies("JSESSIONID"));
         return http.build();
     }
 }
