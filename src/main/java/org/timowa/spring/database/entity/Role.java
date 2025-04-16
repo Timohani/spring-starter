@@ -3,7 +3,7 @@ package org.timowa.spring.database.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    USER, ADMIN;
+    USER, ADMIN, OPERATOR;
 
     @Override
     public String getAuthority() {
