@@ -2,6 +2,7 @@ package org.timowa.integration.service;
 
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
 import org.timowa.annotation.IT;
 import org.timowa.spring.database.entity.Role;
 import org.timowa.spring.dto.UserCreatedEditDto;
@@ -40,11 +41,13 @@ class UserServiceIT {
     void create() {
         UserCreatedEditDto userDto = new UserCreatedEditDto(
                 "test",
+                "test",
                 LocalDate.now(),
                 "Test",
                 "Test",
                 Role.USER,
-                COMPANY_1
+                COMPANY_1,
+                new MockMultipartFile("test", new byte[0])
         );
         UserReadDto actualResult = userService.create(userDto);
 
@@ -60,11 +63,13 @@ class UserServiceIT {
     void update() {
         UserCreatedEditDto userDto = new UserCreatedEditDto(
                 "test",
+                "test",
                 LocalDate.now(),
                 "Test",
                 "Test",
                 Role.USER,
-                COMPANY_1
+                COMPANY_1,
+                new MockMultipartFile("test", new byte[0])
         );
         Optional<UserReadDto> actualResult = userService.update(USER_1, userDto);
 

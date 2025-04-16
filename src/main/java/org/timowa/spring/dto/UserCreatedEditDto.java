@@ -18,6 +18,8 @@ public class UserCreatedEditDto {
     @Email
     String username;
 
+    String rawPassword;
+
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     LocalDate birthDate;
 
